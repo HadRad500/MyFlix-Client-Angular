@@ -10,6 +10,8 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { UserRegRequest } from '../types';
+
 
 @Component({
   selector: 'app-user-registration-form',
@@ -18,7 +20,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegistrationFormComponent implements OnInit {
 
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData: UserRegRequest = {
+    Username: '', Password: '', Email: '', Birthday: new Date(),
+  };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -42,5 +46,4 @@ export class UserRegistrationFormComponent implements OnInit {
       });
     });
   }
-
 }
