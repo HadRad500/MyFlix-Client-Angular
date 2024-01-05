@@ -65,7 +65,7 @@ export class ProfileViewComponent implements OnInit {
   isFavorite(movieID: string: boolean {
     return !!this.favoriteMovies.find((movie) => movie._id === movieID);
   }
-deleteFromFavorites(movieID: string): void {
+removeFavoriteMovie(movieID: string): void {
   this.fetchApiData.deleteFromFavorites(movieID).subscribe({
     complete: () => {
       this.fetchApiData.getUser().subscribe((user: User) => {
@@ -83,7 +83,7 @@ deleteFromFavorites(movieID: string): void {
     },
   });
 }
-deleteAccount(): void {
+deleteUser(): void {
   this.fetchApiData.getDeleteUser().subscribe({
     error: (error) => {
       console.error('Account deletion error:', error);
