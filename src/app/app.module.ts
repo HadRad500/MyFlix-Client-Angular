@@ -14,9 +14,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomePageComponent },
@@ -29,9 +32,12 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent,
         UserRegistrationFormComponent,
+        UserLoginFormComponent,
         MovieCardComponent,
+        MovieDetailsComponent,
         WelcomePageComponent,
         ProfileViewComponent,
+        NavbarComponent,
     ],
     imports: [
         AppRoutingModule,

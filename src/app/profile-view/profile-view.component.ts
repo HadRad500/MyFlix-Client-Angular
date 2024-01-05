@@ -54,7 +54,7 @@ export class ProfileViewComponent implements OnInit {
       Birthday: birthdayEpoch || this.user.Birthday,
     };
 
-    this.fetchApiData.editUser(editedUser).subscribe((response) => {
+    this.fetchApiData.updateUser(editedUser).subscribe((response) => {
       this.getUser();
       this.snackBar.open('User has been updated!', 'OK', {
         duration: 2000,

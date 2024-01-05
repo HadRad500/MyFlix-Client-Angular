@@ -1,0 +1,28 @@
+<div class="dialog">
+    <h1 class="title" mat-dialog-title>{{ data.title }}</h1>
+    <div mat-dialog-content>
+        <ng-container *ngIf="data.title === 'Genre'">
+            <p class="heading">Name:</p>
+            <p>{{ data.name }}</p>
+            <p class="heading">Description:</p>
+            <p>{{ data.description }}</p>
+        </ng-container>
+
+        <ng-container *ngIf="data.title === 'Director' ">
+            <p class="heading">Name:</p>
+            <p>{{ data.name }}</p>
+            <p class="heading">Bio:</p>
+            <p>{{ data.bio }}</p>
+            <p class="heading">Birthyear:</p>
+            <p>{{ data.birthyear }}</p>
+            <p class="heading">Deathyear:</p>
+            <p>{{ data.deathyear }}</p>
+        </ng-container>
+        <ng-container *ngIf="data.title === 'Description' ">
+            <p>{{ data.description }}</p>
+        </ng-container>
+    </div>
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="dialogRef.close()">Close</button>
+    </mat-dialog-actions>
+</div>
