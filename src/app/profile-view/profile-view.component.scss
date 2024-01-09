@@ -1,0 +1,28 @@
+.form-wrapper {
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+legend {
+    font-size: small;
+}
+
+.form-item {
+    margin-bottom: 20px;
+}
+
+/* .favoriteMovies-title {
+    font-size: large;
+}
+
+.favoriteMovies {
+    margin: 40px;
+    text-align: center;
+}
+
+.favoriteMovies-item {
+    margin: 10px;
+} */

@@ -31,7 +31,13 @@ export class ProfileViewComponent implements OnInit {
     this.getUser();
   }
   getUser(): void {
-    this.fetchApiData.getUsers().subscribe((user: User) => {
+    const username = localStorage.getItem('username')
+
+    if (!username) {
+      return
+    }
+
+    this.fetchApiData.getUsers(username).subscribe((user: User) => {
       this.user = {
         ...user,
         Birthday: formatDate(user.Birthday, 'mm-dd-yyyy', 'en-US'),
@@ -62,45 +68,47 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
-  isFavorite(movieID: string: boolean {
+  isFavorite(movieID: string): boolean {
     return !!this.favoriteMovies.find((movie) => movie._id === movieID);
   }
-removeFavoriteMovie(movieID: string): void {
-  this.fetchApiData.deleteFromFavorites(movieID).subscribe({
-    complete: () => {
-      this.fetchApiData.getUser().subscribe((user: User) => {
-        this.user = user;
-        this.favoriteMovies = user.FavoriteMovies;
+  deleteFromFavorites(movieID: string): void {
+    this.fetchApiData.removeFavoriteMovie(movieID).subscribe({
+      complete: () => {
+        this.getUser()
+        // this.fetchApiData.getUser().subscribe((user: User) => {
+        //   this.user = user;
+        //   this.favoriteMovies = user.FavoriteMovies;
         this.snackBar.open('Movie has been deleted from favorites', 'OK', {
           duration: 2000,
         });
-      });
-    },
-    error: () => {
-      this.snackBar.open('Something went wrong', 'OK', {
-        duration: 2000,
-      });
-    },
-  });
-}
-deleteUser(): void {
-  this.fetchApiData.getDeleteUser().subscribe({
-    error: (error) => {
-      console.error('Account deletion error:', error);
-      this.snackBar.open(
-        'Failed to delete account. Please try again.', 'OK', {
-        duration: 2000,
-      }
-      );
-    },
-    complete: () => {
-      this.snackBar.open('Account deleted successfully.', 'OK', {
-        duration: 2000,
-      });
+        // });
+      },
+      error: () => {
+        this.snackBar.open('Something went wrong', 'OK', {
+          duration: 2000,
+        });
+      },
+    });
+  }
+  deleteAccount(): void {
 
-      localStorage.clear();
-      this.router.navigate(['/welcome']);
-    },
-  });
-}
+    this.fetchApiData.deleteUser().subscribe({
+      error: (error) => {
+        console.error('Account deletion error:', error);
+        this.snackBar.open(
+          'Failed to delete account. Please try again.', 'OK', {
+          duration: 2000,
+        }
+        );
+      },
+      complete: () => {
+        this.snackBar.open('Account deleted successfully.', 'OK', {
+          duration: 2000,
+        });
+
+        localStorage.clear();
+        this.router.navigate(['/welcome']);
+      },
+    });
+  }
 }

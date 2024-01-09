@@ -10,5 +10,8 @@
   ],
   "include": [
     "src/**/*.d.ts"
+  ],
+  "entryPoints": [
+    "src/app"
   ]
 }

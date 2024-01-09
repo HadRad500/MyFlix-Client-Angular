@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-navbar',
@@ -7,16 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  constructor(private router: Router) { }
+  constructor(
+    public fetchApiData: FetchApiDataService,
+    public router: Router,
+    public snackBar: MatSnackBar
+  ) { }
+
   logoutUser(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    console.log('User Logged Out', 'OK', {
+      duration: 2000,
+    });
     this.router.navigate(['/welcome']);
   }
-  navigateToProfile(): void {
+  /* navigateToProfile(): void {
     this.router.navigate(['/profile']);
   }
   navigateToAllMovies(): void {
     this.router.navigate(['/movies']);
-  }
+  } */
 }

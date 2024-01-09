@@ -15,10 +15,8 @@
             <p>{{ data.bio }}</p>
             <p class="heading">Birthyear:</p>
             <p>{{ data.birthyear }}</p>
-            <p class="heading">Deathyear:</p>
-            <p>{{ data.deathyear }}</p>
         </ng-container>
-        <ng-container *ngIf="data.title === 'Description' ">
+        <ng-container *ngIf="data.title === 'Synopsis'">
             <p>{{ data.description }}</p>
         </ng-container>
     </div>
