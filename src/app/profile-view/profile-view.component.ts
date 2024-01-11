@@ -30,6 +30,11 @@ export class ProfileViewComponent implements OnInit {
   ngOnInit(): void {
     this.getUser();
   }
+
+  /**
+   * @returns user stored at local storage
+   */
+
   getUser(): void {
     const username = localStorage.getItem('username')
 
@@ -51,6 +56,11 @@ export class ProfileViewComponent implements OnInit {
       this.favoriteMovies = user.FavoriteMovies;
     });
   }
+
+  /**
+   * updates user info
+   */
+
   editUser(): void {
     const birthdayEpoch = Date.parse(this.userData.Birthday);
     const editedUser = {
@@ -71,6 +81,12 @@ export class ProfileViewComponent implements OnInit {
   isFavorite(movieID: string): boolean {
     return !!this.favoriteMovies.find((movie) => movie._id === movieID);
   }
+
+  /**
+   * removes a movie from the list of favorite movies
+   * @param favoriteMovies
+   */
+
   deleteFromFavorites(movieID: string): void {
     this.fetchApiData.removeFavoriteMovie(movieID).subscribe({
       complete: () => {

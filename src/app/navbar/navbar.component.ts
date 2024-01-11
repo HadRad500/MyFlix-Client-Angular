@@ -15,6 +15,10 @@ export class NavbarComponent {
     public snackBar: MatSnackBar
   ) { }
 
+  /**
+   * Logs out user by removing their localstorage and token
+   */
+
   logoutUser(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');

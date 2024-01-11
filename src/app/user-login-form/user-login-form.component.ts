@@ -21,6 +21,11 @@ export class UserLoginFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
+
+  /**
+   * This is the function responsible for sending the form inputs to the backend
+   */
+
   loginUser(): void {
     console.log('Logging in with user data:', this.userData);
     this.fetchApiData.loginUser(this.userData).subscribe(

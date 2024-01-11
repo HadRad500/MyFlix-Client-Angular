@@ -21,12 +21,22 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * @returns an array with all movie objects
+   * gets all movies
+   */
+
   getMovies(): void {
     this.fetchApiData.getMovies().subscribe((resp: any) => {
       this.movies = resp;
       return this.movies;
     });
   }
+
+  /**
+   * opens a dialog with more info about movie genres
+   * @aram genre
+   */
 
   openGenreDialog(genre: any): void {
     this.dialog.open(MovieDetailsComponent, {
@@ -37,6 +47,11 @@ export class MovieCardComponent implements OnInit {
       },
     });
   }
+
+  /**
+   * opens a dialog with more info about the movies director
+   * @param director
+   */
 
   openDirectorDialog(director: any): void {
     console.log(JSON.stringify(director));
@@ -50,6 +65,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+ * opens a dialog with more info about the movies description
+ * @param movie
+ */
+
   openSynopsisDialog(movie: any): void {
     this.dialog.open(MovieDetailsComponent, {
       data: {
@@ -59,6 +79,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * add a movie to users favorite list
+   * @param favoriteMovieid
+   */
 
   addFavoriteMovie(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe(() => {
@@ -68,6 +92,11 @@ export class MovieCardComponent implements OnInit {
       console.log('FavoriteMovesAdded called');
     });
   }
+
+  /**
+   * removes movie to users favorite list
+   * @param favoriteMovieid
+   */
 
   removeFavoriteMovie(movieId: string): void {
     this.fetchApiData.removeFavoriteMovie(movieId).subscribe(() => {
