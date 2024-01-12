@@ -1,4 +1,4 @@
-<div class="profile-view">
+<div class="profile-view container">
     <div class="profile">
         <h1 class="user-info">User Info</h1>
         <div class="grid">
@@ -18,13 +18,13 @@
         </div>
     </div>
     <h1 class="faves-heading">Favorite Movies</h1>
-    <div class="favorite-movies">
-        <mat-card *ngFor="let movie of favoriteMovies">
+    <div class="favorite-movies row gap-2">
+        <mat-card *ngFor="let movie of favoriteMovies" class="col-3">
             <mat-card-header>
                 <mat-card-title>{{ movie.Title }}</mat-card-title>
                 <mat-card-subtitle>Released: {{ movie.Released }}</mat-card-subtitle>
             </mat-card-header>
-            <img width="250" src="{{ movie.ImageURL }}" alt="{{ movie.Title }}" />
+            <img class="img-fit" src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
             <mat-card-actions>
                 <button class="fave-button" mat-raised button *ngIf="isFavorite(movie._id)"
                     (click)="deleteFromFavorites(movie._id)">
