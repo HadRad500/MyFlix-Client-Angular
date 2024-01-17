@@ -32,6 +32,7 @@ export class UserLoginFormComponent implements OnInit {
       (response) => {
         console.log('Login response:', response);
         localStorage.setItem('username', response.user.Username);
+        localStorage.setItem('favs', response.user.FavoriteMovies.join(','));
         localStorage.setItem('token', response.token);
         this.router.navigate(['movies']);
 

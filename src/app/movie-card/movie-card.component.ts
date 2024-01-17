@@ -106,4 +106,9 @@ export class MovieCardComponent implements OnInit {
     });
     console.log('Removed Favorite Movie');
   }
+
+  isFavorite(movieId: string): boolean {
+    const favs = localStorage.getItem('favs') || ""
+    return favs.includes(movieId);
+  }
 }

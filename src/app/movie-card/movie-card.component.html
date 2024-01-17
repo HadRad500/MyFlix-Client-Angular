@@ -15,12 +15,16 @@
             <button mat-button color="primary" (click)="openSynopsisDialog(movie)">
                 Synopsis
             </button>
-            <button mat-button (click)="addFavoriteMovie(movie._id)" class="heart-button">
-                <mat-icon>favorite_border</mat-icon>
-            </button>
-            <button mat-button (click)="removeFavoriteMovie(movie._id)" class="heart-button">
-                <mat-icon>favorite_border</mat-icon>
-            </button>
+            <ng-container *ngIf="isFavorite(movie._id) === false">
+                <button mat-icon-button (click)="addFavoriteMovie(movie._id)">
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="isFavorite(movie._id) === true">
+                <button mat-icon-button (click)="removeFavoriteMovie(movie._id)" class="like">
+                    <mat-icon>favoriter</mat-icon>
+                </button>
+            </ng-container>
         </mat-card-actions>
     </mat-card>
 </div>

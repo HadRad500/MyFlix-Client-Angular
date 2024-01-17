@@ -54,6 +54,8 @@ export class ProfileViewComponent implements OnInit {
         Birthday: formatDate(user.Birthday, 'mm-dd-yyyy', 'en-US'),
       };
       this.favoriteMovies = user.FavoriteMovies;
+      localStorage.setItem('favs', user.FavoriteMovies.join(','));
+
     });
   }
 

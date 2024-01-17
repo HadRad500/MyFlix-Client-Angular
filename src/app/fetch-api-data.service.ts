@@ -6,7 +6,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 const apiUrl = 'https://movie-api-r6ua.onrender.com/';
 @Injectable({
@@ -98,7 +98,11 @@ export class FetchApiDataService {
             Authorization: 'Bearer ' + token,
           })
       })
-      .pipe(catchError(this.handleError));
+      .pipe(tap(data => {
+        let favs = localStorage.getItem('favs') || ""
+        favs = `${favs},${movieId}`;
+        localStorage.setItem('favs', favs);
+      }), catchError(this.handleError));
   }
 
   public updateUser(userDetails: any): Observable<any> {
@@ -138,7 +142,13 @@ export class FetchApiDataService {
             Authorization: 'Bearer ' + token,
           })
       })
-      .pipe(catchError(this.handleError));
+      .pipe(tap(data => {
+        let favs = localStorage.getItem('favs') || ""
+        let favsArray = favs.split(',');
+        favsArray = favsArray.filter(fav => fav !== movieId);
+        favs = favsArray.join(',');
+        localStorage.setItem('favs', favs);
+      }), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): any {
